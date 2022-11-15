@@ -1,0 +1,46 @@
+
+1. genpsd_generate
+
+ Usage: genpsd_generate psdtyp mgeo msiz mlog nsiz sizmin sizmax sizlog mpsd p1 p2 p3 g1 g2 g3 > output
+
+  output   : A use-specified PSD
+  psdtyp   : PSD shape,            0: log-normal; 1: gamma
+  mgeo     : Geometric variable X, 0: number N, 1: proj-area A, 2: volume V
+  msiz     : Size descriptor p,    0: r_g, 1: r_a, 2: r_v, 3: r_e
+           :                       4: D_g, 1: D_a, 6: D-v, 7: D_e
+  mlog     : 0:dX/dp, 1:dX/dlnp
+  nsiz     : # of size bins
+  sizmin   : Minimum size
+  sizmax   : Maximum size
+  sizlog   : Logarithmic interval, 0:off, 1:on
+  mpsd     : flag for PSD parameters, mpsd=0: (p1,p2,p3) = (X_tot,r_eff,v_eff)
+  p1,p2,p3 :                          mpsd=1: (p1,p2,p3) = (X_tot,r_med,S) for psdtyp=0
+           :                                  (p1,p2,p3) = (X_tot,gam,mu)  for psdtyp=1
+  g1,g2,g3 : particle geometry, (g1,g2,g3) = (D_max,A,V)
+
+
+2. genpsd_interconv
+
+ Usage1: genpsd_interconv psdtyp mgeoX msizP mlogP mgeoY msizQ mlogQ mnor g1 g2 g3
+                                           nsiz sizmin sizmax sizlog mpsd p1 p2 p3 > output
+ Usage2: genpsd_interconv psdtyp mgeoX msizP mlogP mgeoY msizQ mlogQ mnor g1 g2 g3 < input > output
+
+  Converting PSDs from dX/dp (dX/dlnp) to dY/dq (dY/dlnq)
+  Usage1 for psdtyp>0, Usage2 for psdtyp=-1
+  input    : A use-specified size bin (1st column) and PSD (2nd column)
+  output   : A use-specified PSD
+  mgeoX    : Geometric variable X, 0: number N, 1: proj-area A, 2: volume V
+  mgeoY    : Geometric variable Y
+  msizP    : Size descriptor p,    0: r_g, 1: r_a, 2: r_v, 3: r_e
+  msizQ    : Size descriptor q,    4: D_g, 1: D_a, 6: D-v, 7: D_e
+  mlogP    : 0:dX/dp, 1:dX/dlnp
+  mlogQ    :
+  mnor     : PSD normalization 0:off, 1:on
+  g1,g2,g3 : particle geometry, (g1,g2,g3) = (D_max,A,V)
+  nsiz     : # of size bins
+  sizmin   : Minimum size
+  sizmax   : Maximum size
+  sizlog   : Logarithmic interval, 0:off, 1:on
+  mpsd     : flag for PSD parameters, mpsd=0: (p1,p2,p3) = (X_tot,r_eff,v_eff)
+  p1,p2,p3 :                          mpsd=1: (p1,p2,p3) = (X_tot,r_med,S) for psdtyp=0
+           :                                  (p1,p2,p3) = (X_tot,gam,mu)  for psdtyp=1
